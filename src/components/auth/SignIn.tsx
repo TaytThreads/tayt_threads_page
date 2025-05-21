@@ -132,7 +132,6 @@ const SignIn = () => {
               <div className="flex-grow border-t border-gray-300"></div>
             </div>
             <div className="space-y-3 custom-paragraph font-medium text-md md:text-sm">
-              {/* Using SocialIconPlaceholder for social login buttons */}
               <button
                 type="button"
                 className="social-auth space-x-4 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 transition duration-200"
