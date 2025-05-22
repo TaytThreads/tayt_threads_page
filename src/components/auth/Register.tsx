@@ -1,25 +1,19 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+
+import { RegisterResolver } from "../../models/resolver";
+
+import type { SubmitHandler } from "react-hook-form";
+import type { SignUpFormValues } from "../../models/type";
 
 const Register = () => {
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignUpFormValues>({ resolver: RegisterResolver });
 
-  const handleSignIn = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!email || !password) {
-      console.error("Email and password are required");
-      return;
-    }
-    console.log("Signing in with:", {
-      fullName,
-      email,
-      password,
-      confirmPassword,
-    });
-  };
+  const onSubmit: SubmitHandler<SignUpFormValues> = (data) => console.log(data);
 
   const handleSocialSignIn = (provider: string) => {
     alert(`Signing in with ${provider} is not implemented yet.`);
@@ -29,6 +23,7 @@ const Register = () => {
     <div className="bg-sign-up min-h-screen bg-white flex items-center justify-center bg-cover bg-center">
       <div className="md:rounded-[3.125rem] w-full max-w-7xl flex flex-col-reverse md:flex-row overflow-hidden bg-white">
         {/* Left Box */}
+
         <div className="w-full md:w-1/2 p-6 bg-white rounded-3xl md:rounded-l-none">
           <div className="max-w-md mx-auto">
             <div className="text-center mb-8">
@@ -48,7 +43,7 @@ const Register = () => {
                 Enter below details to create an account
               </p>
             </div>
-            <form onSubmit={handleSignIn} className="">
+            <form onSubmit={handleSubmit(onSubmit)}>
               <div className="mb-5">
                 <label
                   htmlFor="fullName"
@@ -56,15 +51,20 @@ const Register = () => {
                 >
                   Full Name
                 </label>
+
                 <input
                   type="text"
-                  id="fullName"
-                  value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
+                  {...register("fullName", {
+                    required: "Full Name is required",
+                  })}
                   placeholder="Enter your full name"
                   className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
-                  required
                 />
+                {errors.fullName && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors.fullName.message}
+                  </p>
+                )}
               </div>
               <div className="mb-5">
                 <label
@@ -75,13 +75,17 @@ const Register = () => {
                 </label>
                 <input
                   type="email"
-                  id="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  {...register("email", {
+                    required: "Email is required",
+                  })}
                   placeholder="Enter your email"
                   className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
-                  required
                 />
+                {errors.email && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors.email.message}
+                  </p>
+                )}
               </div>
               <div className="mb-5">
                 <label
@@ -92,13 +96,17 @@ const Register = () => {
                 </label>
                 <input
                   type="password"
-                  id="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  {...register("password", {
+                    required: "Password is required",
+                  })}
                   placeholder="Enter your password"
                   className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
-                  required
                 />
+                {errors.password && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors.password.message}
+                  </p>
+                )}
               </div>
               <div className="mb-5">
                 <label
@@ -109,13 +117,17 @@ const Register = () => {
                 </label>
                 <input
                   type="password"
-                  id="confirmPassword"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  {...register("confirmPassword", {
+                    required: "Confirm Password is required",
+                  })}
                   placeholder="Confirm your password"
                   className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
-                  required
                 />
+                {errors.confirmPassword && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors.confirmPassword.message}
+                  </p>
+                )}
               </div>
               <button
                 type="submit"
