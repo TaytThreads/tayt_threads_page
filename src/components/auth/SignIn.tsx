@@ -1,23 +1,24 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+
+import { LoginResolver } from "../../models/resolver";
+
+import type { SubmitHandler } from "react-hook-form";
+import type { LoginFormValues } from "../../models/type";
 
 const SignIn = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormValues>({ resolver: LoginResolver });
 
-  const handleSignIn = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!email || !password) {
-      console.error("Email and password are required");
-      return;
-    }
-    console.log("Signing in with:", { email, password, rememberMe });
-  };
+  const onSubmit: SubmitHandler<LoginFormValues> = (data) => console.log(data);
 
   const handleSocialSignIn = (provider: string) => {
     alert(`Signing in with ${provider} is not implemented yet.`);
   };
+
   return (
     <div className="bg-sign-in min-h-screen bg-white flex items-center justify-center bg-cover bg-center">
       <div className="md:rounded-[3.125rem] w-full max-w-7xl flex flex-col md:flex-row overflow-hidden bg-white">
@@ -56,7 +57,7 @@ const SignIn = () => {
                 Enter your email and password to access your account
               </p>
             </div>
-            <form onSubmit={handleSignIn} className="">
+            <form onSubmit={handleSubmit(onSubmit)}>
               <div className="mb-5">
                 <label
                   htmlFor="email"
@@ -66,13 +67,17 @@ const SignIn = () => {
                 </label>
                 <input
                   type="email"
-                  id="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  {...register("email", {
+                    required: "Email is required",
+                  })}
                   placeholder="Enter your email"
                   className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
-                  required
                 />
+                {errors.email && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors.email.message}
+                  </p>
+                )}
               </div>
               <div className="mb-5">
                 <label
@@ -83,22 +88,24 @@ const SignIn = () => {
                 </label>
                 <input
                   type="password"
-                  id="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  {...register("password", {
+                    required: "Password is required",
+                  })}
                   placeholder="Enter your password"
                   className="w-full px-4 py-3 rounded-lg bg-gray-50 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
-                  required
                 />
+                {errors.password && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors.password.message}
+                  </p>
+                )}
               </div>
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center">
                   <input
                     id="remember-me"
-                    name="remember-me"
                     type="checkbox"
-                    checked={rememberMe}
-                    onChange={(e) => setRememberMe(e.target.checked)}
+                    {...register("rememberMe")}
                     className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                   />
                   <label
@@ -132,7 +139,6 @@ const SignIn = () => {
               <div className="flex-grow border-t border-gray-300"></div>
             </div>
             <div className="space-y-3 custom-paragraph font-medium text-md md:text-sm">
-              {/* Using SocialIconPlaceholder for social login buttons */}
               <button
                 type="button"
                 className="social-auth space-x-4 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 transition duration-200"

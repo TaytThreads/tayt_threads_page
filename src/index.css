@@ -20,6 +20,17 @@
   background-size: cover;
 }
 
+.bg-sign-up {
+  background-image: url("/images/bg-signup-page.jpg");
+  background-repeat: no-repeat;
+  background-position: center 20%;
+  background-attachment: fixed;
+  background-color: #000;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 .custom-heading {
   font-family: "Prata", Prata;
 }
