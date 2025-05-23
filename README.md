@@ -11,7 +11,7 @@ TaytThreads is a 2nd-hand clothes e-commerce platform connecting buyers and sell
 - **API: ** Golang with GIN frameworks [Github](https://github.com/TaytThreads/tayt_threads_api)
 - **Auth & Payment: ** Java with Spring boot [Github](https://github.com/TaytThreads/tayt_threads_auth_and_payment)
 
-## System Designed
+## System Design
 
 - **Page Deploy: ** AWS Amplify
 - **DNS: ** AWS Route53
@@ -22,7 +22,7 @@ TaytThreads is a 2nd-hand clothes e-commerce platform connecting buyers and sell
 - **Database: ** AWS RDS
 - **Storage: ** AWS S3
 - **Development & Deploy: ** AWS CodePipeline & AWS CodeBuild
-- **Monitor & Logging \* Alert: ** AWS CloudWatch
+- **Monitor & Logging & Alert: ** AWS CloudWatch
 
 ## Tech Stack
 
