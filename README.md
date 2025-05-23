@@ -4,10 +4,25 @@
 
 TaytThreads is a 2nd-hand clothes e-commerce platform connecting buyers and sellers. This repository contains the frontend application built with React.js and TypeScript.
 
-## Project Structure
+## Project Structure & Management
 
 - **Project Management:** [Jira Board](https://taytthreads.atlassian.net/jira/software/projects/SCRUM/boards/1/backlog)
 - **Design System:** [Figma File](https://www.figma.com/design/THA9ONk6yAnemaLDnYq8kf/TaytThreads?node-id=0-1&t=7O1XmCEf7bvyuFjx-1)
+- **API: ** Golang with GIN frameworks [Github](https://github.com/TaytThreads/tayt_threads_api)
+- **Auth & Payment: ** Java with Spring boot [Github](https://github.com/TaytThreads/tayt_threads_auth_and_payment)
+
+## System Design
+
+- **Page Deploy: ** AWS Amplify
+- **DNS: ** AWS Route53
+- **Auth & User management: ** AWS Cognito
+- **API Gateway: ** AWS API Gateway
+- **API: ** AWS Lambda
+- **API Auth & Payment: ** AWS Elastic Beanstalk
+- **Database: ** AWS RDS
+- **Storage: ** AWS S3
+- **Development & Deploy: ** AWS CodePipeline & AWS CodeBuild
+- **Monitor & Logging & Alert: ** AWS CloudWatch
 
 ## Tech Stack
 
@@ -17,6 +32,7 @@ TaytThreads is a 2nd-hand clothes e-commerce platform connecting buyers and sell
 - **Styling:** Tailwind CSS
 - **Routing:** React Router
 - **HTTP Client:** Axios
+- **Form Validation:** React Hook Form
 
 ## Prerequisites
 
