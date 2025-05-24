@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 import { RegisterResolver } from "../../models/resolver";
+import { handleSignUp } from "../../services/authService";
 
 import type { SubmitHandler } from "react-hook-form";
 import type { SignUpFormValues } from "../../models/type";
@@ -13,7 +14,19 @@ const Register = () => {
     formState: { errors },
   } = useForm<SignUpFormValues>({ resolver: RegisterResolver });
 
-  const onSubmit: SubmitHandler<SignUpFormValues> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<SignUpFormValues> = async (data) => {
+    const { isSignUpComplete, nextStep } = await handleSignUp(
+      data.fullName,
+      data.email,
+      data.password
+    );
+
+    console.log("Sign Up Result:", isSignUpComplete, nextStep);
+
+    if (isSignUpComplete) {
+      return <Navigate to="/auth/login" replace />;
+    }
+  };
 
   const handleSocialSignIn = (provider: string) => {
     alert(`Signing in with ${provider} is not implemented yet.`);

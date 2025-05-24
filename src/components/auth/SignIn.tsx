@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 import { LoginResolver } from "../../models/resolver";
+import { handleSignIn } from "../../services/authService";
 
 import type { SubmitHandler } from "react-hook-form";
 import type { LoginFormValues } from "../../models/type";
@@ -13,7 +14,18 @@ const SignIn = () => {
     formState: { errors },
   } = useForm<LoginFormValues>({ resolver: LoginResolver });
 
-  const onSubmit: SubmitHandler<LoginFormValues> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<LoginFormValues> = async (data) => {
+    const { isSignedIn, nextStep } = await handleSignIn(
+      data.email,
+      data.password
+    );
+
+    console.log("Sign In Result:", isSignedIn, nextStep);
+
+    if (isSignedIn) {
+      return <Navigate to="/" replace />;
+    }
+  };
 
   const handleSocialSignIn = (provider: string) => {
     alert(`Signing in with ${provider} is not implemented yet.`);
