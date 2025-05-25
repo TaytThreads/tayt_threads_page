@@ -160,7 +160,7 @@ const Register = () => {
                 onClick={() => handleSocialSignIn("Google")}
               >
                 <img
-                  src="/public/icons/google-icon.png"
+                  src="../../assets/icons/google-icon.png"
                   alt="google-sign-in"
                   width={26}
                   height={26}
@@ -171,7 +171,7 @@ const Register = () => {
                 onClick={() => handleSocialSignIn("Facebook")}
               >
                 <img
-                  src="/public/icons/facebook-icon.png"
+                  src="../../assets/icons/facebook-icon.png"
                   alt="facebook-sign-in"
                   width={24}
                   height={24}
@@ -182,7 +182,7 @@ const Register = () => {
                 onClick={() => handleSocialSignIn("Twitter")}
               >
                 <img
-                  src="/public/icons/twitter-icon.png"
+                  src="../../assets/icons/twitter-icon.png"
                   alt="twitter-sign-in"
                   width={24}
                   height={24}
