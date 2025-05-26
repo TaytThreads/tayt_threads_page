@@ -5,6 +5,7 @@ import {
   signOut,
   fetchAuthSession,
   getCurrentUser,
+  autoSignIn,
 } from "aws-amplify/auth";
 
 export const handleSignIn = async (email: string, password: string) => {
@@ -22,17 +23,34 @@ export const handleSignIn = async (email: string, password: string) => {
 };
 
 export const handleSignUp = async (
-  _fullName: string,
+  fullName: string,
   email: string,
   password: string
 ) => {
-  const { isSignUpComplete, userId, nextStep } = await signUp({
-    username: email,
-    password,
-  });
+  try {
+    const { isSignUpComplete, userId, nextStep } = await signUp({
+      username: email,
+      password,
+      options: {
+        userAttributes: {
+          name: fullName,
+          email: email,
+        },
+        autoSignIn: {
+          authFlowType: "USER_AUTH",
+        },
+      },
+    });
 
-  // TODO: store data to Database
-  return { isSignUpComplete, userId, nextStep };
+    console.log(isSignUpComplete);
+    console.log(userId);
+    console.log();
+    // TODO: store data to Database
+    return { isSignUpComplete, userId, nextStep };
+  } catch (error: unknown) {
+    console.error("Error signing up: ", error);
+    throw error;
+  }
 };
 
 export const handleConfirmSignUp = async (
@@ -40,11 +58,18 @@ export const handleConfirmSignUp = async (
   confirmationCode: string
 ) => {
   try {
-    const { isSignUpComplete, nextStep } = await confirmSignUp({
+    const { nextStep: confirmSignUpNextStep } = await confirmSignUp({
       username: email,
       confirmationCode,
     });
-    return { isSignUpComplete, nextStep };
+
+    if (confirmSignUpNextStep.signUpStep === "COMPLETE_AUTO_SIGN_IN") {
+      const { nextStep } = await autoSignIn();
+
+      if (nextStep.signInStep === "DONE") {
+        console.log("Successfully signed in.");
+      }
+    }
   } catch (error) {
     console.error("Error confirming sign up:", error);
     throw error;

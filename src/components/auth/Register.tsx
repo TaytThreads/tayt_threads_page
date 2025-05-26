@@ -1,13 +1,19 @@
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
-import { RegisterResolver } from "../../models/resolver";
-import { handleSignUp } from "../../services/authService";
+import { RegisterResolver } from "@/models/resolver";
+import { handleSignUp } from "@/services/authService";
+
+import { GoogleIcon, FacebookIcon, TwitterIcon } from "@/assets/icons/index.ts";
+
+import { TaytThreadsLogo } from "@/assets/images/index.ts";
 
 import type { SubmitHandler } from "react-hook-form";
-import type { SignUpFormValues } from "../../models/type";
+import type { SignUpFormValues } from "@/models/type";
 
 const Register = () => {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -15,16 +21,28 @@ const Register = () => {
   } = useForm<SignUpFormValues>({ resolver: RegisterResolver });
 
   const onSubmit: SubmitHandler<SignUpFormValues> = async (data) => {
-    const { isSignUpComplete, nextStep } = await handleSignUp(
-      data.fullName,
-      data.email,
-      data.password
-    );
+    try {
+      const { isSignUpComplete, userId, nextStep } = await handleSignUp(
+        data.fullName,
+        data.email,
+        data.password
+      );
 
-    console.log("Sign Up Result:", isSignUpComplete, nextStep);
+      console.log("Sign Up Result:", isSignUpComplete, userId, nextStep);
 
-    if (isSignUpComplete) {
-      return <Navigate to="/auth/login" replace />;
+      if (nextStep.signUpStep === "CONFIRM_SIGN_UP" || userId !== null) {
+        console.log("Redirecting to confirmation page with email:", data.email);
+        navigate(`/confirm-signup/${encodeURIComponent(data.email)}`, {
+          replace: true,
+        });
+      } else if (isSignUpComplete) {
+        console.log("Sign up complete, redirecting to home page");
+        navigate("/", { replace: true });
+      }
+    } catch (error) {
+      alert(
+        `An error occurred during sign up. Please try again later. ${error}`
+      );
     }
   };
 
@@ -43,7 +61,7 @@ const Register = () => {
               <div className="inline-block">
                 <div className="h-20 w-auto bg-center mb-2">
                   <img
-                    src="/public/images/tt-logo-black.png"
+                    src={TaytThreadsLogo}
                     alt="Logo"
                     className="h-full w-auto"
                   />
@@ -160,7 +178,7 @@ const Register = () => {
                 onClick={() => handleSocialSignIn("Google")}
               >
                 <img
-                  src="/public/icons/google-icon.png"
+                  src={GoogleIcon}
                   alt="google-sign-in"
                   width={26}
                   height={26}
@@ -171,7 +189,7 @@ const Register = () => {
                 onClick={() => handleSocialSignIn("Facebook")}
               >
                 <img
-                  src="/public/icons/facebook-icon.png"
+                  src={FacebookIcon}
                   alt="facebook-sign-in"
                   width={24}
                   height={24}
@@ -182,7 +200,7 @@ const Register = () => {
                 onClick={() => handleSocialSignIn("Twitter")}
               >
                 <img
-                  src="/public/icons/twitter-icon.png"
+                  src={TwitterIcon}
                   alt="twitter-sign-in"
                   width={24}
                   height={24}
