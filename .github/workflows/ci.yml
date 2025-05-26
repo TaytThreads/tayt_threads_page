@@ -21,6 +21,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Install Amplify Env
+        run: npx ampx generate outputs --branch main --app-id ddj8wod0nlg9s
+
       - name: Run ESLint
         run: npm run lint
 
