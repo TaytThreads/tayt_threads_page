@@ -48,7 +48,7 @@ export const handleSignUp = async (
     // TODO: store data to Database
     return { isSignUpComplete, userId, nextStep };
   } catch (error: unknown) {
-    console.error("Error signing in: ", error);
+    console.error("Error signing up: ", error);
     throw error;
   }
 };
