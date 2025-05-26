@@ -1,4 +1,4 @@
-name: CI Production
+name: CI 
 
 on:
   push:
@@ -28,8 +28,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Generate Amplify Outputs
-        run: npx ampx generate outputs --branch production --app-id ddj8wod0nlg9s --out-dir ./
       - name: Run ESLint
         run: npm run lint
 
