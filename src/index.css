@@ -7,11 +7,12 @@
 
 @font-face {
   font-family: "Poppins";
-  src: local("Poppins-Extralight"), url("./assets/fonts/poppins-extralight.ttf");
+  src:
+    local("Poppins-Extralight"), url("./assets/fonts/poppins-extralight.ttf");
 }
 
 .bg-sign-in {
-  background: url(../public/images/bg-login-page.jpg) no-repeat center center
+  background: url(./assets/images/bg-signin-page.jpg) no-repeat center center
     fixed;
   background-color: #000;
   -webkit-background-size: cover;
@@ -21,7 +22,7 @@
 }
 
 .bg-sign-up {
-  background-image: url("/images/bg-signup-page.jpg");
+  background-image: url("./assets/images/bg-signup-page.jpg");
   background-repeat: no-repeat;
   background-position: center 20%;
   background-attachment: fixed;
@@ -31,6 +32,19 @@
   -o-background-size: cover;
   background-size: cover;
 }
+
+.bg-confirm-email {
+  background-image: url("./assets/images/bg-confirmation-emil-page.jpg");
+  background-repeat: no-repeat;
+  background-position: center 20%;
+  background-attachment: fixed;
+  background-color: #000;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 .custom-heading {
   font-family: "Prata", Prata;
 }

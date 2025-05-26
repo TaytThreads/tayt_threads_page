@@ -3,7 +3,8 @@ import { useForm } from "react-hook-form";
 
 import { LoginResolver } from "../../models/resolver";
 import { handleSignIn } from "../../services/authService";
-
+import { GoogleIcon, FacebookIcon, TwitterIcon } from "@/assets/icons/index.ts";
+import { TaytThreadsLogo } from "@/assets/images/index.ts";
 import type { SubmitHandler } from "react-hook-form";
 import type { LoginFormValues } from "../../models/type";
 
@@ -56,7 +57,7 @@ const SignIn = () => {
               <div className="inline-block">
                 <div className="h-20 w-auto bg-center mb-2">
                   <img
-                    src="/public/images/tt-logo-black.png"
+                    src={TaytThreadsLogo}
                     alt="Logo"
                     className="h-full w-auto"
                   />
@@ -157,7 +158,7 @@ const SignIn = () => {
                 onClick={() => handleSocialSignIn("Google")}
               >
                 <img
-                  src="/public/icons/google-icon.png"
+                  src={GoogleIcon}
                   alt="google-sign-in"
                   width={24}
                   height={24}
@@ -170,7 +171,7 @@ const SignIn = () => {
                 onClick={() => handleSocialSignIn("Facebook")}
               >
                 <img
-                  src="/public/icons/facebook-icon.png"
+                  src={FacebookIcon}
                   alt="facebook-sign-in"
                   width={24}
                   height={24}
@@ -183,7 +184,7 @@ const SignIn = () => {
                 onClick={() => handleSocialSignIn("Twitter")}
               >
                 <img
-                  src="/public/icons/twitter-icon.png"
+                  src={TwitterIcon}
                   alt="twitter-sign-in"
                   width={24}
                   height={24}
