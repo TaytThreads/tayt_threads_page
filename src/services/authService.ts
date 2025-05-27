@@ -17,6 +17,7 @@ export const handleSignIn = async (email: string, password: string) => {
 
     return { isSignedIn, nextStep };
   } catch (error: unknown) {
+    // TODO: Implement Sign-In Failed
     console.error("Error signing in: ", error);
     throw error;
   }
@@ -39,12 +40,10 @@ export const handleSignUp = async (
       },
     });
 
-    console.log(isSignUpComplete);
-    console.log(userId);
-    console.log();
-    // TODO: store data to Database
+    // TODO: store user data to Database
     return { isSignUpComplete, userId, nextStep };
   } catch (error: unknown) {
+    // TODO: Implement Sign-Up error modal
     console.error("Error signing up: ", error);
     throw error;
   }
@@ -61,13 +60,10 @@ export const handleConfirmSignUp = async (
     });
 
     if (confirmSignUpNextStep.signUpStep === "COMPLETE_AUTO_SIGN_IN") {
-      const { nextStep } = await autoSignIn();
-
-      if (nextStep.signInStep === "DONE") {
-        console.log("Successfully signed in.");
-      }
+      await autoSignIn();
     }
   } catch (error) {
+    // TODO: Implement Error code invalid modal
     console.error("Error confirming sign up:", error);
     throw error;
   }

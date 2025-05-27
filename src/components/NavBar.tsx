@@ -35,7 +35,10 @@ const NavBar = () => {
       e.preventDefault();
       if (searchQuery.trim()) {
         // TODO: search logic
-        console.log("Searching for:", searchQuery);
+        alert(
+          `Searching for: ${searchQuery}. This functionality is not implemented yet.`
+        );
+        setSearchQuery("");
       }
     },
     [searchQuery]

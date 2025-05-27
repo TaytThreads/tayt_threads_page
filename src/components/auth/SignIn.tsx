@@ -22,12 +22,7 @@ const SignIn = () => {
   } = useForm<LoginFormValues>({ resolver: LoginResolver });
 
   const onSubmit: SubmitHandler<LoginFormValues> = async (data) => {
-    const { isSignedIn, nextStep } = await handleSignIn(
-      data.email,
-      data.password
-    );
-
-    console.log("Sign In Result:", isSignedIn, nextStep);
+    const { isSignedIn } = await handleSignIn(data.email, data.password);
 
     if (isSignedIn || nextStep.signInStep === "DONE") {
       console.log("Successfully signed in.");
