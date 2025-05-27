@@ -44,7 +44,7 @@ jobs:
 
       - name: Generate Amplify Outputs (Staging/Production)
         if: github.event_name == 'push' && (github.ref_name == 'staging' || github.ref_name == 'production')
-        run: npx ampx generate outputs --branch ${{ github.ref_name }} --app-id ddj8wod0nlg9s --out-dir ./
+        run: npx ampx generate outputs --branch ${{ github.ref_name }} --app-id d39qthns8fi2t1 --out-dir ./
 
       - name: Build application (Staging/Production)
         if: github.event_name == 'push' && (github.ref_name == 'staging' || github.ref_name == 'production')

@@ -2,13 +2,16 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Amplify } from "aws-amplify";
 
-import LandingPage from "./routes/LandingPage";
+import MainPageLayout from "./routes/MainLayout";
 import AuthLayout from "./routes/Authentication";
+
 import SignIn from "./components/auth/SignIn";
 import Register from "./components/auth/Register";
 import Confirmation from "./routes/Confirmation";
-import output from "../amplify_outputs.json";
+import MainPage from "./pages/MainPage";
+
 import "./index.css";
+import output from "../amplify_outputs.json";
 
 Amplify.configure(output);
 
@@ -20,7 +23,9 @@ if (!root) {
 ReactDOM.createRoot(root).render(
   <BrowserRouter>
     <Routes>
-      <Route index element={<LandingPage />} />
+      <Route path="/" element={<MainPageLayout />}>
+        <Route path="/" element={<MainPage />} />
+      </Route>
 
       <Route path="/auth" element={<AuthLayout />}>
         <Route path="login" element={<SignIn />} />

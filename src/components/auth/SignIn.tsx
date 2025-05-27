@@ -60,11 +60,13 @@ const SignIn = () => {
             <div className="text-center mb-8">
               <div className="inline-block">
                 <div className="h-20 w-auto bg-center mb-2">
-                  <img
-                    src={TaytThreadsLogo}
-                    alt="Logo"
-                    className="h-full w-auto"
-                  />
+                  <Link to="/">
+                    <img
+                      src={TaytThreadsLogo}
+                      alt="Logo"
+                      className="h-full w-auto"
+                    />
+                  </Link>
                 </div>
               </div>
               <h2 className="text-3xl font-light text-gray-800 custom-heading ">

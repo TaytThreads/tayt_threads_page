@@ -11,6 +11,11 @@
     local("Poppins-Extralight"), url("./assets/fonts/poppins-extralight.ttf");
 }
 
+@font-face {
+  font-family: "Integral";
+  src: local("Integral-Bold"), url("./assets/fonts/integralcf-bold.ttf");
+}
+
 .bg-sign-in {
   background: url(./assets/images/bg-signin-page.jpg) no-repeat center center
     fixed;
@@ -45,8 +50,16 @@
   background-size: cover;
 }
 
+.bg-banner {
+  background: linear-gradient(0deg, #ffc633 18.75%, #fffefc 100%);
+}
+
 .custom-heading {
   font-family: "Prata", Prata;
+}
+
+.custom-banner {
+  font-family: "Integral", Integral;
 }
 
 .custom-paragraph {
