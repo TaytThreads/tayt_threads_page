@@ -1,15 +1,19 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
-import { RegisterResolver } from "@/models/resolver";
-import { handleSignUp } from "@/services/authService";
+import { RegisterResolver } from "../../models/resolver";
+import { handleSignUp } from "../../services/authService";
 
-import { GoogleIcon, FacebookIcon, TwitterIcon } from "@/assets/icons/index.ts";
+import {
+  GoogleIcon,
+  FacebookIcon,
+  TwitterIcon,
+} from "../../assets/icons/index.ts";
 
-import { TaytThreadsLogo } from "@/assets/images/index.ts";
+import { TaytThreadsLogo } from "../../assets/images/index.ts";
 
 import type { SubmitHandler } from "react-hook-form";
-import type { SignUpFormValues } from "@/models/type";
+import type { SignUpFormValues } from "../../models/type";
 
 const Register = () => {
   const navigate = useNavigate();
