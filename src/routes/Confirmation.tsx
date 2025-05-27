@@ -32,7 +32,6 @@ const Confirmation = () => {
 
       navigate("/auth/login", { replace: true });
     } catch (error) {
-      console.error("Error during confirmation:", error);
       alert(
         `An error occurred during confirmation. Please try again later. ${error}`
       );

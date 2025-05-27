@@ -32,15 +32,11 @@ const Register = () => {
         data.password
       );
 
-      console.log("Sign Up Result:", isSignUpComplete, userId, nextStep);
-
       if (nextStep.signUpStep === "CONFIRM_SIGN_UP" || userId !== null) {
-        console.log("Redirecting to confirmation page with email:", data.email);
         navigate(`/confirm-signup/${encodeURIComponent(data.email)}`, {
           replace: true,
         });
       } else if (isSignUpComplete) {
-        console.log("Sign up complete, redirecting to home page");
         navigate("/", { replace: true });
       }
     } catch (error) {
