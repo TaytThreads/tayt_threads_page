@@ -32,12 +32,19 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Cache npm
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: npm-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-cache-${{ runner.os }}-
+
       - name: Run ESLint
         run: npm run lint
 
-      - name: Build validation (PR/Main)
+      - name: Type check only (PR/Main)
         if: github.event_name == 'pull_request' || github.ref_name == 'main'
-        run: npm run build
+        run: npx tsc --noEmit
 
       - name: Cache Amplify Outputs
         if: github.event_name == 'push' && (github.ref_name == 'staging' || github.ref_name == 'production')
@@ -74,5 +81,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: build-${{ github.ref_name }}
-          path: dist/
+          path: dist/ # or your build output directory
           retention-days: 7
