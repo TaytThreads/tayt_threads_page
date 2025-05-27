@@ -3,8 +3,12 @@ import { useForm } from "react-hook-form";
 
 import { LoginResolver } from "../../models/resolver";
 import { handleSignIn } from "../../services/authService";
-import { GoogleIcon, FacebookIcon, TwitterIcon } from "@/assets/icons/index.ts";
-import { TaytThreadsLogo } from "@/assets/images/index.ts";
+import {
+  GoogleIcon,
+  FacebookIcon,
+  TwitterIcon,
+} from "../../assets/icons/index.ts";
+import { TaytThreadsLogo } from "../../assets/images/index.ts";
 import type { SubmitHandler } from "react-hook-form";
 import type { LoginFormValues } from "../../models/type";
 

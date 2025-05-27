@@ -1,7 +1,7 @@
 import { Link, useParams, useNavigate } from "react-router-dom";
 
-import { handleConfirmSignUp } from "@/services/authService";
-import { TaytThreadsEmail } from "@/assets/images";
+import { handleConfirmSignUp } from "../services/authService";
+import { TaytThreadsEmail } from "../assets/images";
 
 const Confirmation = () => {
   const { email } = useParams<{ email: string }>();

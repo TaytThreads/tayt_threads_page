@@ -1,13 +1,5 @@
 {
-  "compilerOptions": {
-    "esModuleInterop": true,
-    "declaration": false,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    }
-  },
-  "include": ["src"],
+  "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
