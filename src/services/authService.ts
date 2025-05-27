@@ -36,9 +36,6 @@ export const handleSignUp = async (
           name: fullName,
           email: email,
         },
-        autoSignIn: {
-          authFlowType: "USER_AUTH",
-        },
       },
     });
 

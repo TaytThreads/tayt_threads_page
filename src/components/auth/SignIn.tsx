@@ -1,4 +1,4 @@
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 import { LoginResolver } from "../../models/resolver";
@@ -13,6 +13,8 @@ import type { SubmitHandler } from "react-hook-form";
 import type { LoginFormValues } from "../../models/type";
 
 const SignIn = () => {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -27,8 +29,9 @@ const SignIn = () => {
 
     console.log("Sign In Result:", isSignedIn, nextStep);
 
-    if (isSignedIn) {
-      return <Navigate to="/" replace />;
+    if (isSignedIn || nextStep.signInStep === "DONE") {
+      console.log("Successfully signed in.");
+      navigate("/", { replace: true });
     }
   };
 
