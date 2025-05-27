@@ -1,4 +1,3 @@
-import React from "react";
 import BannerSection from "../components/BannerSection";
 
 const MainPage = () => {
