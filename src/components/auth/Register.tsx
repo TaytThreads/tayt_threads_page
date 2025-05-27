@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 import { RegisterResolver } from "../../models/resolver";
-import { handleSignUp } from "../..//services/authService";
+import { handleSignUp } from "../../services/authService";
 
 import {
   GoogleIcon,
