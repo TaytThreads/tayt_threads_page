@@ -81,7 +81,7 @@ export const handleSignOut = async () => {
 export const getSession = async () => {
   try {
     const session = await fetchAuthSession();
-    return session.tokens;
+    return session.tokens?.accessToken.payload.client_id;
   } catch (error: unknown) {
     console.error("Error confirming sign up:", error);
     return null;

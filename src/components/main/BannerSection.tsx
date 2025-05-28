@@ -1,4 +1,4 @@
-import { BannerModel, BannerVector } from "../assets/images/index";
+import { BannerModel, BannerVector } from "../../assets/images/index";
 
 const BannerSection = () => {
   const appDescription = [
@@ -16,13 +16,13 @@ const BannerSection = () => {
     },
   ];
   return (
-    <section className="bg-banner w-full overflow-clip h-[41rem] flex items-center justify-between">
-      <div className="flex-1 flex flex-col items-start justify-center gap-8 ps-16">
+    <section className="bg-banner w-full h-auto lg:h-[41rem] overflow-clip flex items-center justify-between p-8 lg:p-16">
+      <div className="flex-1 flex flex-col items-start justify-center gap-8">
         <div className="flex flex-col items-start justify-center gap-8">
-          <h1 className="custom-banner text-6xl max-w-xl">
+          <h1 className="custom-banner text-4xl md:text-6xl max-w-xl">
             FIND CLOTHES THAT MATCHES YOUR STYLE
           </h1>
-          <p className="custom-paragraph text-[16px] text-gray-700 max-w-2xl">
+          <p className="custom-paragraph text-lg md:text-[16px] text-gray-700 max-w-2xl">
             Browse through our diverse range of meticulously crafted garments,
             designed to bring out your individuality and cater to your sense of
             style.
@@ -31,21 +31,23 @@ const BannerSection = () => {
             Shop Now
           </button>
         </div>
-        <div className="flex flex-wrap justify-start w-full gap-8">
+        <div className="flex flex-wrap justify-center md:justify-start w-full gap-2 md:gap-8">
           {appDescription.map((item, index) => (
             <div
               key={index}
-              className="flex flex-col items-start justify-center gap-2 border-r-1 border-gray-500 pr-8 last:border-r-0"
+              className="flex flex-col items-start justify-center gap-2 border-r-1 border-gray-500 pr-2 md:pr-8 last:border-r-0"
             >
-              <h3 className="text-4xl font-bold">{item.description}</h3>
-              <p className="custom-paragraph text-[16px] text-gray-600">
+              <h3 className="text-xl md:text-4xl font-bold">
+                {item.description}
+              </h3>
+              <p className="custom-paragraph text-[8px] md:text-[16px] text-gray-600">
                 {item.title}
               </p>
             </div>
           ))}
         </div>
       </div>
-      <div className="hidden flex-1 relative md:flex items-center justify-center">
+      <div className="hidden flex-1 relative lg:flex items-center justify-center">
         <img
           src={BannerVector}
           alt="Banner Image"

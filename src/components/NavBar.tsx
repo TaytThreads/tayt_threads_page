@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState, useEffect, useRef, useCallback } from "react";
-import { Link } from "react-router-dom";
 
+import { getSession } from "../services/authService";
 import {
   SearchIcon,
   ChevronUpIcon,
@@ -11,9 +11,23 @@ import {
 } from "../assets/icons/index";
 
 const NavBar = () => {
+  const [user, setUser] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const dropdownRef = useRef<HTMLLIElement>(null);
+
+  useEffect(() => {
+    const fetchSession = async () => {
+      const session = await getSession();
+      if (session != null || session !== undefined) {
+        setUser(true);
+      } else {
+        setUser(false);
+      }
+    };
+
+    fetchSession();
+  }, [user]);
 
   const toggleDropdown = useCallback(() => {
     setIsDropdownOpen((prev) => !prev);
@@ -184,24 +198,50 @@ const NavBar = () => {
             </div>
           </form>
         </div>
-
-        <div className="flex items-center">
-          <button
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            aria-label="Shopping cart"
-          >
-            <img src={CartIcon} alt="" className="w-5 h-5" aria-hidden="true" />
-          </button>
-          <Link
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            aria-label="User account"
-            to="/auth/login"
-          >
-            <img src={UserIcon} alt="" className="w-5 h-5" aria-hidden="true" />
-          </Link>
+        <div className="flex items-center gap-2">
+          {user === true ? (
+            <>
+              <button
+                className="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 hover:cursor-pointer"
+                aria-label="Shopping cart"
+                onClick={() => alert("Cart functionality not implemented yet")}
+              >
+                <img
+                  src={CartIcon}
+                  alt=""
+                  className="w-5 h-5"
+                  aria-hidden="true"
+                />
+              </button>
+              <button
+                className="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 hover:cursor-pointer"
+                aria-label="User account"
+                onClick={() =>
+                  alert("User account functionality not implemented yet")
+                }
+              >
+                <img
+                  src={UserIcon}
+                  alt=""
+                  className="w-5 h-5"
+                  aria-hidden="true"
+                />
+              </button>
+            </>
+          ) : (
+            <a
+              href="/auth/login"
+              aria-label="Sign In"
+              role="button"
+              className="py-2 px-4 text-sm bg-yellow-500 hover:bg-yellow-200 rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-amber-500 hover:cursor-pointer"
+            >
+              Sign In
+            </a>
+          )}
         </div>
 
         {/* Mobile Menu */}
+        {/* TODO: Implement mobile menu toggle functionality */}
         <div className="md:hidden">
           <button
             className="p-2 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
