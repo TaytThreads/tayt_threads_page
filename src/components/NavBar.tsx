@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState, useEffect, useRef, useCallback } from "react";
-import { Link } from "react-router-dom";
 
 import { getSession } from "../services/authService";
 import {
