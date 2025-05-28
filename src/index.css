@@ -3,17 +3,38 @@
 @font-face {
   font-family: "Prata";
   src: local("Prata-Regular"), url("./assets/fonts/Prata-Regular.ttf");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Poppins";
   src:
-    local("Poppins-Extralight"), url("./assets/fonts/poppins-extralight.ttf");
+    local("Poppins-ExtraLight"), url("./assets/fonts/poppins-extralight.ttf");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: local("Poppins-Medium"), url("./assets/fonts/poppins-medium.ttf");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Integral";
   src: local("Integral-Bold"), url("./assets/fonts/integralcf-bold.ttf");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
 }
 
 .bg-sign-in {
